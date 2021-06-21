@@ -3,8 +3,7 @@ var url = require('url');
 var fs = require('fs');
 
 http.createServer(function (req, res) {
-	  var q = url.parse(req.url, true);
-	  var filename = "." + q.pathname;
+	  // var q = url.parse(req.url, true);
 	  // fs.readFile(filename, function(err, data) {
 		 //      if (err) {
 			//             res.writeHead(404, {'Content-Type': 'text/html'});
@@ -15,12 +14,12 @@ http.createServer(function (req, res) {
 		 //      // return res.write(data);
 		 //    });
 
-	  res.writeHead(200, {'Content-Type': 'text/html'});
-	  res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-	  res.write('<input type="file" name="filetoupload"><br>');
-	  res.write('<input type="submit">');
-	  res.write('</form>');
+	  res.setHeader('Content-Type', 'text/plain');
+	  res.setHeader('Access-Control-Allow-Origin', '*');
+	  // res.setHeader('Access-Control-Allow-Origin', 'http://192.168.40.99:3000');
+	  res.writeHead(200);
+	  var move = Math.floor(Math.random() * 89);
+	  res.write('{"move":' + move + '}');
 	  return res.end();
 
-  	  // console.log(fsval);
 }).listen(8080);
